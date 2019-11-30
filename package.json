@@ -1,12 +1,12 @@
 {
   "name": "project-veritas",
   "version": "1.0.0",
-  "description": "",
+  "description": "freescience",
   "scripts": {
     "start": "node app.js",
     "server": "nodemon app.js"
   },
-  "author": "",
+  "author": "volynsal",
   "license": "ISC",
   "dependencies": {
     "bcryptjs": "^2.4.3",

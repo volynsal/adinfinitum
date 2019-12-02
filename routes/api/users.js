@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const jwt = require('jsonwebtoken');
+const passport = require('passport');
 
 router.get("/test", (req, res) => res.json({ msg: "This is the users route" }));
 
@@ -13,7 +14,7 @@ const User = require('../../models/User');
 // Importing keys.js
 const keys = require('../../config/keys');
 
-// 
+// Route for users to register
 router.post('/register', (req, res) => {
     // Check to make sure nobody has already registered with a duplicate email
     User.findOne({ email: req.body.email })
@@ -85,5 +86,15 @@ router.post('/login', (req, res) => {
           })
       })
   })
+
+// Route to return the credentials of our current user
+router.get('/current', passport.authenticate('jwt', {session: false}), (req, res) => {
+  res.json({
+    id: req.user.id,
+    handle: req.user.handle,
+    email: req.user.email,
+    credential: req.user.credential
+  });
+})
 
 module.exports = router;

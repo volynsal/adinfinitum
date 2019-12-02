@@ -27,7 +27,7 @@ mongoose
 // Middleware for passport
 app.use(passport.initialize());
 
-// 
+// Importing the configuration file for the passport
 require('./config/passport')(passport);
 
 // Middleware for body parser

@@ -3,6 +3,10 @@ const router = express.Router();
 const jwt = require('jsonwebtoken');
 const passport = require('passport');
 
+// New validations
+// const validateRegisterInput = require('../../validation/register');
+// const validateLoginInput = require('../../validation/login');
+
 router.get("/test", (req, res) => res.json({ msg: "This is the users route" }));
 
 // Import bcrypt for user registration
@@ -16,6 +20,12 @@ const keys = require('../../config/keys');
 
 // Route for users to register
 router.post('/register', (req, res) => {
+    // const { errors, isValid } = validateRegisterInput(req.body);
+  
+    // if (!isValid) {
+    //   return res.status(400).json(errors);
+    // }
+
     // Check to make sure nobody has already registered with a duplicate email
     User.findOne({ email: req.body.email })
       .then(user => {
@@ -55,6 +65,12 @@ router.post('/register', (req, res) => {
 
 // Route for users to login
 router.post('/login', (req, res) => {
+    // const { errors, isValid } = validateLoginInput(req.body);
+
+    // if (!isValid) {
+    //   return res.status(400).json(errors);
+    // }
+
     const email = req.body.email;
     const password = req.body.password;
   
